@@ -1,3 +1,2 @@
-web: FLASK_APP=ussd.py flask run
+web: gunicorn app:app
 
-web: gunicorn gettingstarted.wsgi --log-file 
