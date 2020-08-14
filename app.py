@@ -2,6 +2,8 @@ from flask import Flask, request
 app = Flask(__name__)
 
 response = ""
+data = []
+
 
 @app.route('/', methods=['POST', 'GET'])
 def ussd_callback():
@@ -11,15 +13,48 @@ def ussd_callback():
   phone_number = request.values.get("phoneNumber", None)
   text = request.values.get("text", "default")
 
-  if text == ' ':
-    response  = "CON What would you want to order \n"
-    response += "1. Chips Plain @ Kshs.100 \n"
-    response += "2. Soda 300ml @ kshs. 30 \n"
-    response += "3. Soda 500ml @ Kshs. 40 \n"
-    response += "4. Smokies @ kshs. 25 \n"
-    response += "5. Chicken @ Kshs. 100 "
+  if text == '':
+     response  = "CON What would you want to order \n"
+     response += "1. Chips Plain @ Kshs.100 \n"
+     response += "2. Soda 300ml @ kshs. 30 \n"
+     response += "3. Soda 500ml @ Kshs. 40 \n"
+     response += "4. Smokies @ kshs. 25 \n"
+     response += "5. Chicken @ Kshs. 100 "
 
-  if text != ' ':
+  elif text == '1':
+     response = "CON Choose your location \n"
+     response += "1.  Kiboswa \n"
+     response += "2.  Dago \n"
+     response += "3.  Nyangori \n"
+     response += "4.  Kapko \n"
+     response += "5.  Riat "
+     data.append(response)
+  
+  elif text == '2':
+     response = "CON Choose your location \n"
+     response += "1.  Kiboswa \n"
+     response += "2.  Dago \n"
+     response += "3.  Nyangori \n"
+     response += "4.  Kapko \n"
+     response += "5.  Riat "
+
+  elif text == '3':
+     response = "CON Choose your location \n"
+     response += "1.  Kiboswa \n"
+     response += "2.  Dago \n"
+     response += "3.  Nyangori \n"
+     response += "4.  Kapko \n"
+     response += "5.  Riat "
+  
+  elif text == '4':
+     response = "CON Choose your location \n"
+     response += "1.  Kiboswa \n"
+     response += "2.  Dago \n"
+     response += "3.  Nyangori \n"
+     response += "4.  Kapko \n"
+     response += "5.  Riat "
+
+  elif text == '5':
      response = "CON Choose your location \n"
      response += "1.  Kiboswa \n"
      response += "2.  Dago \n"
@@ -27,7 +62,17 @@ def ussd_callback():
      response += "4.  Kapko \n"
      response += "5.  Riat \n"
 
-     return response + "The transport cost is Kshs. 50"
+  elif text == '1*1':
+     response = "CON How can we reach you \n"
+     response += "type your phone number \n"
+     data.append(response)
+  
+  elif '1*1*07' in text:
+     response = "END Thank you for your order"
+     
+  
+  return response
+  
 
  
 if __name__ == '__main__':
