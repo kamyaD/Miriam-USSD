@@ -28,13 +28,13 @@ def ussd_callback():
     
 
   if text == '1':
-     response = "End We have received your order and its being processed"
+     response = "END We have received your order and its being processed"
  
   if text == '2':
-     response = "End We have received your order and its being processed"
+     response = "END We have received your order and its being processed"
 
   if text == '3':
-     response = "End We have received your order and its being processed"
+     response = "END We have received your order and its being processed"
 
   return response 
 
