@@ -1,5 +1,13 @@
+import os
 from flask import Flask, request
+from flask_sqlalchemy import SQLAlchemy
+
 app = Flask(__name__)
+app.config.from_object(os.environ['APP_SETTINGS'])
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS']= False
+db = SQLAlchemy(app)
+
+from models import *
 
 response = ""
 data = []
@@ -12,7 +20,7 @@ def ussd_callback():
   service_code = request.values.get("serviceCode", None)
   phone_number = request.values.get("phoneNumber", None)
   text = request.values.get("text", "default")
-
+  
   if text == '':
      response  = "CON What would you want to order \n"
      response += "1. Chips Plain @ Kshs.100 \n"
@@ -20,6 +28,7 @@ def ussd_callback():
      response += "3. Soda 500ml @ Kshs. 40 \n"
      response += "4. Smokies @ kshs. 25 \n"
      response += "5. Chicken @ Kshs. 100 "
+
 
   elif text == '1':
      response = "CON Choose your location \n"
@@ -29,6 +38,7 @@ def ussd_callback():
      response += "4.  Kapko \n"
      response += "5.  Riat "
      data.append(response)
+     
   
   elif text == '2':
      response = "CON Choose your location \n"
@@ -37,6 +47,8 @@ def ussd_callback():
      response += "3.  Nyangori \n"
      response += "4.  Kapko \n"
      response += "5.  Riat "
+     
+     
 
   elif text == '3':
      response = "CON Choose your location \n"
