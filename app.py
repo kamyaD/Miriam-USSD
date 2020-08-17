@@ -80,9 +80,7 @@ def ussd_callback():
      data.append(text)
   
   elif '1*1*07' in text:
-    content = Response("Chips Plain @ Kshs.100", "Kiboswa", text)
-    db.session.add(content)
-    db.session.commit()
+    content = Response("Chips Plain @ Kshs.100", "Kiboswa", text[4:13])
     response = "END Thank you for your order"
 
   return response
