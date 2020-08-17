@@ -28,6 +28,8 @@ def ussd_callback():
      response += "3. Soda 500ml @ Kshs. 40 \n"
      response += "4. Smokies @ kshs. 25 \n"
      response += "5. Chicken @ Kshs. 100 "
+     data.append("Chips Plain @ Kshs.100")
+
 
 
   elif text == '1':
@@ -37,7 +39,7 @@ def ussd_callback():
      response += "3.  Nyangori \n"
      response += "4.  Kapko \n"
      response += "5.  Riat "
-     data.append(response)
+     data.append("Kiboswa")
      
   
   elif text == '2':
@@ -77,12 +79,17 @@ def ussd_callback():
   elif text == '1*1':
      response = "CON How can we reach you \n"
      response += "type your phone number \n"
-     data.append(response)
+     data.append(text)
   
   elif '1*1*07' in text:
      response = "END Thank you for your order"
      
   
+  # Inserting to the database:
+  content = Response(data)
+  db.session.add(content)
+  db.session.commit()
+
   return response
   
 
