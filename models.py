@@ -1,4 +1,4 @@
-from app import db
+from db import db
 from sqlalchemy.dialects.postgresql import JSON
 from flask_sqlalchemy import SQLAlchemy
 
@@ -19,4 +19,18 @@ class Response(db.Model):
 
     def __repr__(self):
         return '<id {}>'.format(self.id)
+
+class OrderOptions(db.Model):
+    __tablename__='order_options'
+
+    id=db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String())
+    price = db.Column(db.String())
+
+
+
+
+
+
+
 
