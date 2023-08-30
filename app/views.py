@@ -1,4 +1,5 @@
-from models import *
+from flask import request,jsonify
+from app import app
 
 response = ""
 data = []
